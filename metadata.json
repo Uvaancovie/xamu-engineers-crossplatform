@@ -1,0 +1,7 @@
+{
+  "name": "Xamu Wetlands Field Data",
+  "description": "A professional tool for field scientists to collect, manage, and analyze environmental data for clients and projects, featuring AI-powered insights.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
