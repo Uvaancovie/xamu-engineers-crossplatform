@@ -13,6 +13,7 @@ import FieldDataDetail from './FieldDataDetail';
 import AiAssistant from './AiAssistant';
 import AiDataScientist from './AiDataScientist';
 import Map from './Map';
+import WeatherDashboard from './WeatherDashboard';
 import InternetSearch from './InternetSearch';
 import { useTranslation } from '../src/LanguageContext';
 
@@ -27,7 +28,7 @@ const Dashboard: React.FC<{ user: User, userProfile: UserProfile, theme: string,
     const [allFieldData, setAllFieldData] = useState<FieldData[]>([]);
     const [statsLoading, setStatsLoading] = useState(true);
 
-    const [currentView, setCurrentView] = useState<'clients' | 'projects' | 'fieldData' | 'map' | 'settings' | 'profile'>('clients');
+    const [currentView, setCurrentView] = useState<'clients' | 'projects' | 'fieldData' | 'map' | 'weather' | 'settings' | 'profile'>('clients');
     const [searchTerm, setSearchTerm] = useState('');
     const [clientSearchTerm, setClientSearchTerm] = useState('');
     const [filteredFieldData, setFilteredFieldData] = useState<FieldData[]>([]);
@@ -379,6 +380,9 @@ const Dashboard: React.FC<{ user: User, userProfile: UserProfile, theme: string,
                     </button>
                     <button onClick={() => { setCurrentView('map'); setSidebarOpen(false); }} className={`w-full text-left p-2 rounded ${currentView === 'map' ? 'bg-green-600' : 'hover:bg-gray-700'}`}>
                         {t('map')}
+                    </button>
+                    <button onClick={() => { setCurrentView('weather'); setSidebarOpen(false); }} className={`w-full text-left p-2 rounded ${currentView === 'weather' ? 'bg-green-600' : 'hover:bg-gray-700'}`}>
+                        <i className="fas fa-cloud-sun mr-2"></i>Weather
                     </button>
                     <button onClick={() => { setCurrentView('profile'); setSidebarOpen(false); }} className={`w-full text-left p-2 rounded ${currentView === 'profile' ? 'bg-green-600' : 'hover:bg-gray-700'}`}>
                         {t('profile')}
@@ -793,6 +797,10 @@ const Dashboard: React.FC<{ user: User, userProfile: UserProfile, theme: string,
                                 <Map fieldData={fieldDataEntries} />
                             </div>
                         </div>
+                    )}
+
+                    {currentView === 'weather' && (
+                        <WeatherDashboard fieldData={allFieldData} theme={theme} />
                     )}
 
                     {currentView === 'profile' && (
