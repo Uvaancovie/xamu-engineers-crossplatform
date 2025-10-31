@@ -2,9 +2,9 @@
 import { GoogleGenAI } from "@google/genai";
 import type { Client, Project, FieldData } from '../types';
 
-// Per @google/genai coding guidelines, API key must be from process.env.GEMINI_API_KEY
+// Per @google/genai coding guidelines, API key must be from import.meta.env.VITE_GEMINI_API_KEY
 // and its existence is guaranteed in the execution environment.
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
 export const getAIInsightStream = async (
     client: Client,
